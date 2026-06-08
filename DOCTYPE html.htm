@@ -1,214 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Building Environment Log</title>
-
-<style>
-body{
-    background:#0b0f14;
-    color:#00ff99;
-    font-family:Consolas, monospace;
-    padding:30px;
-}
-
-.container{
-    max-width:1000px;
-    margin:auto;
-}
-
-input{
-    background:#111;
-    color:#00ff99;
-    border:1px solid #00ff99;
-    padding:10px;
-    width:250px;
-}
-
-button{
-    background:#00ff99;
-    color:#000;
-    border:none;
-    padding:10px 15px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:15px;
-}
-
-th, td{
-    border:1px solid #00ff99;
-    padding:8px;
-    text-align:left;
-}
-
-.alert{
-    color:#ff5555;
-    font-weight:bold;
-}
-
-.notice{
-    color:#ffd966;
-}
-</style>
+    <title>Archive Database</title>
 </head>
 <body>
 
-<div class="container">
-
-<h1>BUILDING ENVIRONMENT DATABASE</h1>
+<h2>Archive Database</h2>
 
 <p>Enter Access Code:</p>
 
 <input type="text" id="code">
-<button onclick="openFile()">ACCESS FILE</button>
+<button onclick="checkCode()">Access</button>
 
-<hr>
-
-<div id="result">
-Awaiting access code...
-</div>
-
-</div>
+<div id="result"></div>
 
 <script>
+function checkCode() {
 
-function openFile(){
+    let code = document.getElementById("code").value;
 
-let code = document.getElementById("code").value.toUpperCase();
+    if(code === "A9174E3208") {
 
-if(code === "A9174E3208"){
+        document.getElementById("result").innerHTML = `
+        <hr>
 
-document.getElementById("result").innerHTML = `
+        <h3>TEMPERATURE LOG</h3>
 
-<h2>FILE: TEMPERATURE LOG ARCHIVE</h2>
+        <p>
+        01 June<br>
+        06:00 - Room Temperature ON<br>
+        06:00 - 24°C (Automatic)<br>
+        11:00 - 22°C (Automatic)<br>
+        15:00 - 25°C (Automatic)<br>
+        18:00 - 27°C (Automatic)<br>
+        00:00 - Room Temperature OFF
+        </p>
 
-<p>
-Location: Executive Office<br>
-Period: 01 June 2026 - 06 June 2026
-</p>
+        <p>
+        02 June<br>
+        06:00 - Room Temperature ON<br>
+        06:00 - 24°C (Automatic)<br>
+        11:00 - 22°C (Automatic)<br>
+        15:00 - 25°C (Automatic)<br>
+        18:00 - 27°C (Automatic)<br>
+        00:00 - Room Temperature OFF
+        </p>
 
-<p class="notice">
-System Status: Records Retrieved Successfully
-</p>
+        <p>
+        03 June<br>
+        06:00 - Room Temperature ON<br>
+        06:00 - 24°C (Automatic)<br>
+        11:00 - 22°C (Automatic)<br>
+        15:00 - 25°C (Automatic)<br>
+        18:00 - 27°C (Automatic)<br>
+        23:15 - 20°C (Manually Changed)<br>
+        23:30 - 18°C (Set to Automatic)<br>
+        00:00 - Room Temperature OFF
+        </p>
 
-<table>
-
-<tr>
-<th>Date</th>
-<th>Time</th>
-<th>Event</th>
-</tr>
-
-<tr><td>01 Jun</td><td>06:00</td><td>Room Temperature ON</td></tr>
-<tr><td>01 Jun</td><td>06:00</td><td>24°C (Automatic)</td></tr>
-<tr><td>01 Jun</td><td>11:00</td><td>22°C (Automatic)</td></tr>
-<tr><td>01 Jun</td><td>15:00</td><td>25°C (Automatic)</td></tr>
-<tr><td>01 Jun</td><td>18:00</td><td>27°C (Automatic)</td></tr>
-<tr><td>02 Jun</td><td>00:00</td><td>Room Temperature OFF</td></tr>
-
-<tr><td>02 Jun</td><td>06:00</td><td>Room Temperature ON</td></tr>
-<tr><td>02 Jun</td><td>06:00</td><td>24°C (Automatic)</td></tr>
-<tr><td>02 Jun</td><td>11:00</td><td>22°C (Automatic)</td></tr>
-<tr><td>02 Jun</td><td>15:00</td><td>25°C (Automatic)</td></tr>
-<tr><td>02 Jun</td><td>18:00</td><td>27°C (Automatic)</td></tr>
-<tr><td>03 Jun</td><td>00:00</td><td>Room Temperature OFF</td></tr>
-
-<tr><td>03 Jun</td><td>06:00</td><td>Room Temperature ON</td></tr>
-<tr><td>03 Jun</td><td>06:00</td><td>24°C (Automatic)</td></tr>
-<tr><td>03 Jun</td><td>11:00</td><td>22°C (Automatic)</td></tr>
-<tr><td>03 Jun</td><td>15:00</td><td>25°C (Automatic)</td></tr>
-<tr><td>03 Jun</td><td>18:00</td><td>27°C (Automatic)</td></tr>
-
-<tr class="alert">
-<td>03 Jun</td>
-<td>23:15</td>
-<td>20°C (MANUALLY MODIFIED)</td>
-</tr>
-
-<tr class="alert">
-<td>03 Jun</td>
-<td>23:30</td>
-<td>18°C (SET TO AUTOMATIC)</td>
-</tr>
-
-<tr><td>04 Jun</td><td>00:00</td><td>Room Temperature OFF</td></tr>
-
-<tr><td>04 Jun</td><td>06:00</td><td>Room Temperature ON</td></tr>
-<tr><td>04 Jun</td><td>06:00</td><td>18°C (Automatic)</td></tr>
-<tr><td>04 Jun</td><td>11:00</td><td>16°C (Automatic)</td></tr>
-<tr><td>04 Jun</td><td>15:00</td><td>16°C (Automatic)</td></tr>
-<tr><td>04 Jun</td><td>18:00</td><td>18°C (Automatic)</td></tr>
-<tr><td>05 Jun</td><td>00:00</td><td>Room Temperature OFF</td></tr>
-
-<tr><td>05 Jun</td><td>06:00</td><td>Room Temperature ON</td></tr>
-<tr><td>05 Jun</td><td>06:00</td><td>18°C (Automatic)</td></tr>
-<tr><td>05 Jun</td><td>11:00</td><td>16°C (Automatic)</td></tr>
-<tr><td>05 Jun</td><td>15:00</td><td>16°C (Automatic)</td></tr>
-
-<tr class="alert">
-<td>05 Jun</td>
-<td>18:00</td>
-<td>27°C (MANUALLY MODIFIED)</td>
-</tr>
-
-<tr><td>06 Jun</td><td>00:00</td><td>Room Temperature OFF</td></tr>
-
-<tr><td>06 Jun</td><td>06:00</td><td>Room Temperature ON</td></tr>
-
-<tr class="alert">
-<td>06 Jun</td>
-<td>06:00</td>
-<td>24°C (SET TO AUTOMATIC)</td>
-</tr>
-
-<tr><td>06 Jun</td><td>11:00</td><td>22°C (Automatic)</td></tr>
-<tr><td>06 Jun</td><td>15:00</td><td>25°C (Automatic)</td></tr>
-<tr><td>06 Jun</td><td>18:00</td><td>27°C (Automatic)</td></tr>
-<tr><td>07 Jun</td><td>00:00</td><td>Room Temperature OFF</td></tr>
-
-</table>
-
-<br>
-
-<div class="alert">
-SYSTEM ALERT
-</div>
-
-<p>
-Temperature profile deviated from standard automation pattern.
-</p>
-
-<p>
-Manual modifications detected:
-<br>- 03 Jun 23:15
-<br>- 05 Jun 18:00
-<br>- 06 Jun 06:00
-</p>
-
-<p class="alert">
-Environmental settings were changed manually.
-Review access logs for authorized personnel.
-</p>
-
-`;
-
-}else{
-
-document.getElementById("result").innerHTML = `
-<p style="color:#ff5555;">
-ACCESS DENIED<br>
-FILE NOT FOUND
-</p>
-`;
-
-}
-
+        <p>
+        SYSTEM NOTICE:<br>
+        Temperature changed manually on 03 June 2026 at 23:15.
+        </p>
+        `;
+    }
+    else {
+        document.getElementById("result").innerHTML =
+        "ACCESS DENIED";
+    }
 }
 </script>
 
